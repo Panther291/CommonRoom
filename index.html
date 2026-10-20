@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Commonroom | Local files</title>
+  <link rel="stylesheet" href="/static/app.css">
+  <script src="/static/app.js" defer></script>
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <a class="wordmark" href="/" aria-label="Commonroom home"><span class="mark" aria-hidden="true"></span>commonroom</a>
+      <div class="connection"><span class="connection-dot"></span>Private network</div>
+    </header>
+
+    <section id="login-view" class="login-view" aria-labelledby="login-title" hidden>
+      <p class="eyebrow">YOUR LOCAL LIBRARY</p>
+      <h1 id="login-title">Files, in reach.</h1>
+      <p class="lede">Sign in to browse and play files across this computer's available drives.</p>
+      <form id="login-form" class="login-form">
+        <label for="password">Server password</label>
+        <div class="password-field">
+          <input id="password" name="password" type="password" autocomplete="current-password" required autofocus>
+          <button id="toggle-password" class="quiet-button" type="button" aria-label="Show password">Show</button>
+        </div>
+        <p id="login-error" class="form-error" role="alert"></p>
+        <button class="primary-button" type="submit">Open library <span aria-hidden="true">&#8594;</span></button>
+      </form>
+      <p class="login-note">The server password appears in the terminal where the server was started. Signing in grants read-only access to every detected drive, so use this only with devices you trust.</p>
+    </section>
+
+    <section id="browser-view" class="browser-view" hidden>
+      <div class="page-heading">
+        <div>
+          <p class="eyebrow">SHARED LIBRARY</p>
+          <h1 id="browser-title">Your drives</h1>
+        </div>
+        <button id="sign-out" class="quiet-button sign-out" type="button">Sign out</button>
+      </div>
+      <p class="access-notice">Read-only access across detected drives <span aria-hidden="true">&#183;</span> trusted network only</p>
+
+      <div class="toolbar">
+        <div class="breadcrumbs" id="breadcrumbs" aria-label="Folder path"></div>
+        <div class="tools">
+          <label class="search-box"><span class="visually-hidden">Search this folder</span><input id="search" type="search" placeholder="Search this folder"></label>
+          <button id="refresh" class="icon-button" type="button" aria-label="Refresh folder" title="Refresh">&#8635;</button>
+        </div>
+      </div>
+
+      <div class="library-status"><span id="item-count">Loading library...</span><span id="status-message" role="status"></span></div>
+      <div class="file-list" id="file-list" aria-live="polite"></div>
+      <div id="empty-state" class="empty-state" hidden>
+        <div class="empty-mark" aria-hidden="true">&#8595;</div>
+        <h2>This folder is empty</h2>
+        <p>Add files to the server's shared folder, then refresh.</p>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="player" class="player-dialog" aria-label="Media player">
+    <div class="player-head"><p id="player-title"></p><button id="close-player" class="quiet-button" type="button">Close</button></div>
+    <video id="video-player" controls playsinline hidden></video>
+    <audio id="audio-player" controls hidden></audio>
+  </dialog>
+</body>
+</html>
